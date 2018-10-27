@@ -1,4 +1,4 @@
-import { Component, OnInit, SimpleChanges  } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 // import Employee Model
 import { Employee } from '../models/employee.model';
 import { EmployeeService } from './employee.service';
@@ -9,6 +9,7 @@ import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
   styleUrls: ['./list-employees.component.css']
 })
 export class ListEmployeesComponent implements OnInit {
+  dataFromChild: Employee;
 
   employees: Employee[];
   employeeToDisplay: Employee;
@@ -31,5 +32,9 @@ export class ListEmployeesComponent implements OnInit {
     } else {
       this.employeeToDisplay = this.employees[0];
     }
+  }
+
+  handleNotify(eventData: Employee) {
+    this.dataFromChild = eventData;
   }
 }
