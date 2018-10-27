@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges  } from '@angular/core';
 // import Employee Model
 import { Employee } from '../models/employee.model';
 import { EmployeeService } from './employee.service';
+import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   templateUrl: './list-employees.component.html',
@@ -10,7 +11,7 @@ import { EmployeeService } from './employee.service';
 export class ListEmployeesComponent implements OnInit {
 
   employees: Employee[];
-
+  employeeToDisplay: Employee;
 
   // Inject EmployeeService using the constructor
   // The private variable _employeeService which points to
@@ -21,5 +22,14 @@ export class ListEmployeesComponent implements OnInit {
   // using the private variable _employeeService
   ngOnInit() {
     this.employees = this._employeeService.getEmployees();
+    this.employeeToDisplay = this.employees[0];
+  }
+
+  nextEmployee(): void {
+    if (this.employeeToDisplay.id <= 2) {
+      this.employeeToDisplay = this.employees[this.employeeToDisplay.id];
+    } else {
+      this.employeeToDisplay = this.employees[0];
+    }
   }
 }
