@@ -3,7 +3,7 @@
   {{ dataFromChild?.name + ' ' + dataFromChild?.gender }}
 </h1>
 <div *ngFor="let employee of employees">
-  <div (click)="h1Variable.innerHTML = childComponent.getNameAndGender()">
+  <div (click)="h1Variable.innerHTML = childComponent.getNameAndGender(); onClick(employee.id)">
   <app-display-employee [employee]="employee"
                         (notify)="handleNotify($event)" #childComponent>
   </app-display-employee>
