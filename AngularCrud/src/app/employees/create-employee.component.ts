@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Employee } from '../models/employee.model';
 import { EmployeeService } from './employee.service';
@@ -23,7 +23,7 @@ export class CreateEmployeeComponent implements OnInit {
     isActive: null,
     photoPath: null
   };
-
+  @ViewChild('employeeForm') public createEmployeeForm: NgForm;
   constructor(private _employeeService: EmployeeService,
     private _router: Router) { }
 
