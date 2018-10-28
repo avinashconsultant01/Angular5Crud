@@ -31,12 +31,13 @@ export class CreateEmployeeComponent implements OnInit {
   }
 
   saveEmployee(empForm: NgForm): void {
-    this._employeeService.save(this.employee);
+    const newEmployee: Employee = Object.assign({}, this.employee);
+    this._employeeService.save(newEmployee);
     // empForm.reset();
-    this.createEmployeeForm.reset({
-      name: 'Test Value',
-      email: 'kudvenkat@pragimtech.com'
-    });
+    // this.createEmployeeForm.reset({
+    //   name: 'Test Value',
+    //   email: 'kudvenkat@pragimtech.com'
+    // });
     this._router.navigate(['list']);
   }
 
