@@ -11,6 +11,7 @@ import { EmployeeService } from './employees/employee.service';
 import { DisplayEmployeeComponent } from './employees/display-employee.component';
 import { CreateEmployeeCanDeactivateGuardService } from './employees/create-employee-can-deactivate-gaurd.service';
 import { EmployeeDetailsComponent } from './employees/employee-details.component';
+import { EmployeeFilterPipe } from './employee-filter.pipe';
 
 const appRoutes: Routes = [
   { path: 'list', component: ListEmployeesComponent },
@@ -29,7 +30,8 @@ const appRoutes: Routes = [
     ListEmployeesComponent,
     CreateEmployeeComponent,
     DisplayEmployeeComponent,
-    EmployeeDetailsComponent
+    EmployeeDetailsComponent,
+    EmployeeFilterPipe
   ],
   imports: [
     BrowserModule,

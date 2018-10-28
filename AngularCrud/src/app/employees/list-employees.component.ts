@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class ListEmployeesComponent implements OnInit {
   dataFromChild: Employee;
-
+  searchTerm: string;
   employees: Employee[];
   employeeToDisplay: Employee;
 

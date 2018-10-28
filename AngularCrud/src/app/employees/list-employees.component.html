@@ -1,8 +1,12 @@
+<div class="form-group">
+    <input type="text" class="form-control" placeholder="Search By Name"
+            style="width:300px" [(ngModel)]="searchTerm" />
+</div>
 <h1 #h1Variable></h1>
 <h1 *ngIf="dataFromChild">
   {{ dataFromChild?.name + ' ' + dataFromChild?.gender }}
 </h1>
-<div *ngFor="let employee of employees">
+<div *ngFor="let employee of employees | employeeFilter:searchTerm">
   <div (click)="h1Variable.innerHTML = childComponent.getNameAndGender(); onClick(employee.id)">
   <app-display-employee [employee]="employee"
                         (notify)="handleNotify($event)" #childComponent>
