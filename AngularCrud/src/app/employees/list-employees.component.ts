@@ -12,9 +12,24 @@ import { Router } from '@angular/router';
 })
 export class ListEmployeesComponent implements OnInit {
   dataFromChild: Employee;
-  searchTerm: string;
+  _searchTerm: string;
   employees: Employee[];
   employeeToDisplay: Employee;
+  filteredEmployees: Employee[];
+
+  get searchTerm(): string {
+    return this._searchTerm;
+  }
+
+  set searchTerm(value: string) {
+    this._searchTerm = value;
+    this.filteredEmployees = this.filterEmployees(value);
+  }
+
+  filterEmployees(searchString: string) {
+    return this.employees.filter(employee =>
+      employee.name.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
+  }
 
   // Inject EmployeeService using the constructor
   // The private variable _employeeService which points to
@@ -26,6 +41,7 @@ export class ListEmployeesComponent implements OnInit {
   // using the private variable _employeeService
   ngOnInit() {
     this.employees = this._employeeService.getEmployees();
+    this.filteredEmployees = this.employees;
     this.employeeToDisplay = this.employees[0];
   }
 
