@@ -3,7 +3,8 @@ import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Employee } from '../models/employee.model';
 import { EmployeeService } from './employee.service';
 import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 
 @Component({
@@ -36,13 +37,22 @@ export class ListEmployeesComponent implements OnInit {
   // EmployeeService singelton instance is then available
   // throughout the class and can be accessed using this keyword
   constructor(private _employeeService: EmployeeService,
-    private _router: Router) { }
+    private _router: Router,
+  private _route: ActivatedRoute) { }
   // Call the getEmployees() service method of EmployeeService
   // using the private variable _employeeService
   ngOnInit() {
-    this.employees = this._employeeService.getEmployees();
-    this.filteredEmployees = this.employees;
-    this.employeeToDisplay = this.employees[0];
+    this._employeeService.getEmployees().subscribe((empList) => {
+      this.employees = empList;
+      this._route.queryParamMap.subscribe(params => {
+        if (params.has('searchTerm')) {
+          this.searchTerm = params.get('searchTerm');
+        } else {
+          this.filteredEmployees = this.employees;
+          console.log(this.employees.length);
+        }
+      });
+    });
   }
 
   nextEmployee(): void {
