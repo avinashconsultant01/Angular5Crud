@@ -16,8 +16,10 @@ import { EmployeeListResolverService } from './employees/employee-list-resolver.
 
 const appRoutes: Routes = [
   { path: 'list', component: ListEmployeesComponent, resolve: { employeeList: EmployeeListResolverService } },
-  { path: 'create', component: CreateEmployeeComponent,
-  canDeactivate: [CreateEmployeeCanDeactivateGuardService] },
+  {
+    path: 'create', component: CreateEmployeeComponent,
+    canDeactivate: [CreateEmployeeCanDeactivateGuardService]
+  },
   {
     path: 'employees/:id', component: EmployeeDetailsComponent
   },
@@ -36,10 +38,10 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, { enableTracing : true}),
     FormsModule
   ],
-  providers: [EmployeeService, CreateEmployeeCanDeactivateGuardService,  EmployeeListResolverService],
+  providers: [EmployeeService, CreateEmployeeCanDeactivateGuardService, EmployeeListResolverService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
