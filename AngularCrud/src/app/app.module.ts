@@ -12,9 +12,10 @@ import { DisplayEmployeeComponent } from './employees/display-employee.component
 import { CreateEmployeeCanDeactivateGuardService } from './employees/create-employee-can-deactivate-gaurd.service';
 import { EmployeeDetailsComponent } from './employees/employee-details.component';
 import { EmployeeFilterPipe } from './employee-filter.pipe';
+import { EmployeeListResolverService } from './employees/employee-list-resolver.service';
 
 const appRoutes: Routes = [
-  { path: 'list', component: ListEmployeesComponent },
+  { path: 'list', component: ListEmployeesComponent, resolve: { employeeList: EmployeeListResolverService } },
   { path: 'create', component: CreateEmployeeComponent,
   canDeactivate: [CreateEmployeeCanDeactivateGuardService] },
   {
@@ -38,7 +39,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FormsModule
   ],
-  providers: [EmployeeService, CreateEmployeeCanDeactivateGuardService],
+  providers: [EmployeeService, CreateEmployeeCanDeactivateGuardService,  EmployeeListResolverService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
