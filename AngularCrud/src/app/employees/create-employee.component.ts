@@ -14,13 +14,13 @@ export class CreateEmployeeComponent implements OnInit {
   employee: Employee = {
     id: null,
     name: null,
-    gender: null,
+    gender: 'male',
     contactPreference: null,
     phoneNumber: null,
     email: null,
     dateOfBirth: null,
-    department: null,
-    isActive: null,
+    department: '3',
+    isActive: true,
     photoPath: null
   };
   @ViewChild('employeeForm') public createEmployeeForm: NgForm;

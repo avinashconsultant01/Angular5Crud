@@ -10,3 +10,4 @@ export class Employee {
     isActive: boolean;
     photoPath?: string;
 }
+

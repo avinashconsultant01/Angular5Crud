@@ -13,6 +13,8 @@ import { CreateEmployeeCanDeactivateGuardService } from './employees/create-empl
 import { EmployeeDetailsComponent } from './employees/employee-details.component';
 import { EmployeeFilterPipe } from './employee-filter.pipe';
 import { EmployeeListResolverService } from './employees/employee-list-resolver.service';
+import { PageNotFoundComponent } from './page-not-found.component';
+import { EmployeeDetailsGuardService } from './employees/employee-details-guard.service';
 
 const appRoutes: Routes = [
   { path: 'list', component: ListEmployeesComponent, resolve: { employeeList: EmployeeListResolverService } },
@@ -21,9 +23,11 @@ const appRoutes: Routes = [
     canDeactivate: [CreateEmployeeCanDeactivateGuardService]
   },
   {
-    path: 'employees/:id', component: EmployeeDetailsComponent
+    path: 'employees/:id', component: EmployeeDetailsComponent,
+    canActivate: [EmployeeDetailsGuardService]
   },
-  { path: '', redirectTo: '/list', pathMatch: 'full' }
+  { path: '', redirectTo: '/list', pathMatch: 'full' },
+  { path: 'notfound', component: PageNotFoundComponent }
 ];
 
 
@@ -34,14 +38,15 @@ const appRoutes: Routes = [
     CreateEmployeeComponent,
     DisplayEmployeeComponent,
     EmployeeDetailsComponent,
-    EmployeeFilterPipe
+    EmployeeFilterPipe,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes, { enableTracing : true}),
+    RouterModule.forRoot(appRoutes, { enableTracing: true }),
     FormsModule
   ],
-  providers: [EmployeeService, CreateEmployeeCanDeactivateGuardService, EmployeeListResolverService],
+  providers: [EmployeeService, CreateEmployeeCanDeactivateGuardService, EmployeeListResolverService, EmployeeDetailsGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
