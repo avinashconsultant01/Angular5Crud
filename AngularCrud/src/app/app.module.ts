@@ -15,6 +15,7 @@ import { EmployeeFilterPipe } from './employee-filter.pipe';
 import { EmployeeListResolverService } from './employees/employee-list-resolver.service';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { EmployeeDetailsGuardService } from './employees/employee-details-guard.service';
+import { SelectRequiredValidatorDirective } from './shared/select-required-validator.directive';
 
 
 const appRoutes: Routes = [
@@ -40,7 +41,8 @@ const appRoutes: Routes = [
     DisplayEmployeeComponent,
     EmployeeDetailsComponent,
     EmployeeFilterPipe,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SelectRequiredValidatorDirective
   ],
   imports: [
     BrowserModule,
