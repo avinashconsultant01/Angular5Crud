@@ -16,6 +16,7 @@ import { EmployeeListResolverService } from './employees/employee-list-resolver.
 import { PageNotFoundComponent } from './page-not-found.component';
 import { EmployeeDetailsGuardService } from './employees/employee-details-guard.service';
 
+
 const appRoutes: Routes = [
   { path: 'list', component: ListEmployeesComponent, resolve: { employeeList: EmployeeListResolverService } },
   {
